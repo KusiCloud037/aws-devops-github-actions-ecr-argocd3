@@ -35,8 +35,18 @@ ingress:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/liveness
+    ## SSL Settings
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+
+    # Replace below with YOUR ACM Certificate ARN
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:259546193733:certificate/fef65000-1dbe-463e-8450-3b096290462f
+
+    # Force HTTPS
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+
     # External DNS Annotation
-    external-dns.alpha.kubernetes.io/hostname: retailstore1.stacksimplify.com
+    external-dns.alpha.kubernetes.io/hostname: retailstore1.opsninja.click
+
   tls: []
   hosts: []
 
